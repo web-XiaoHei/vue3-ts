@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <h2>{{message}}</h2>
+        <h2 :style="[styleObj1,styleObj2]"></h2>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    message: 'Hello World',
+                    styleObj1: {
+                        color: 'red',
+                        fontSize: '30px'
+
+                    },
+                    styleObj2: {
+                        textDecoration: 'undeline'
+                    }
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>

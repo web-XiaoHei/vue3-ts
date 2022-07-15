@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <!-- <div :style = {cssPropertyName:cssPopertyValue}></div> -->
+        <div :style="{color:finalColor,'font-size':'30px'}">哈哈</div>
+        <div :style="{color:finalColor,fontSize:'30px'}">呵呵</div>
+        <div :style="{color:finalColor,fontSize:finalFontSize+'px'}">嘻嘻</div>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    message: 'Hello World',
+                    finalColor: 'red',
+                    finalFontSize: 30
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2 class="counter">0</h2>
+    <button class="add">+1</button>
+    <button class="sub">-1</button>
+
+    <script>
+        // 1.获取所有的变量
+        var counterDiv = document.querySelector('.counter')
+        var addDiv = document.querySelector('.add')
+        var subDiv = document.querySelector('.sub')
+
+        // 2，定义变量
+        let counter = 0
+        counterDiv.innerHTML = counter
+
+        // 3.监听按钮的点击
+        // console.log(counterDiv, addDiv, subDiv);
+        addDiv.addEventListener("click", () => {
+            // console.log("1111");
+            counter++
+            counterDiv.innerHTML = counter
+        })
+
+        subDiv.addEventListener("click", () => {
+            // console.log("1111");
+            counter > 0 ? counter-- : 0
+            counterDiv.innerHTML = counter
+        })
+
+
+
+    </script>
+</body>
+
+</html>
