@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <h2>{{fullName}}</h2>
+        <h2>{{scoreResult}}</h2>
+        <h2>{{reverseMessage}}</h2>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    message: 'Hello World',
+                    firstName: 'kobe',
+                    lastName: 'Bryant',
+                    score: 80
+                }
+            },
+            computed: {
+                scoreResult() {
+                    let result = this.score > 60 ? "及格" : "不及格"
+                    return result
+                },
+                reverseMessage() {
+                    return this.message.split(" ").reverse().join(" ")
+                },
+                fullName() {
+                    return this.firstName + " " + this.lastName
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>

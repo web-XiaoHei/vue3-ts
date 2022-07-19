@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+
+
+        <h2>{{FullName}}</h2>
+        <h2>{{FullName}}</h2>
+        <h2>{{FullName}}</h2>
+        <h2>{{FullName}}</h2>
+        <h2>{{FullName}}</h2>
+        <h2>{{FullName}}</h2>
+        <h2>{{FullName}}</h2>
+        <h2>{{FullName}}</h2>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    message: 'Hello World',
+                    firstName: "Kobe",
+                    lastName: "Bryant"
+                }
+            },
+            methods: {
+                getFullName() {
+                    console.log("11111");
+                    return this.firstName + " " + this.lastName
+                }
+            },
+            computed: {
+                // 计算属性是有缓存的, 当我们多次使用计算属性时, 计算属性中的运算只会执行一次.
+                // 计算属性会随着依赖的数据(firstName)的改变, 而进行重新计算.
+                FullName() {
+                    console.log("2222");
+                    return this.firstName + " " + this.lastName
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>
