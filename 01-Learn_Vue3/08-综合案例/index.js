@@ -51,6 +51,21 @@ const App = {
                 return newItem
             })
         }
+    },
+    methods: {
+        decrement(index) {
+            // 通过索引值获取到对象
+            this.books[index].count--
+        },
+        increment(index) {
+            this.books[index].count++
+        },
+        removeBook(index) {
+            this.books.splice(index, 1);
+        },
+        formatPrice(price) {
+            return "¥" + price;
+        }
     }
 }
 Vue.createApp(App).mount('#app')
