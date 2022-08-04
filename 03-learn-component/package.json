@@ -10,6 +10,7 @@
     "vue": "^3.2.13"
   },
   "devDependencies": {
-    "@vue/cli-service": "~5.0.0"
+    "@vue/cli-service": "~5.0.0",
+    "mitt": "^3.0.0"
   }
 }
