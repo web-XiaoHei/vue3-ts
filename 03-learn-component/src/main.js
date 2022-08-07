@@ -14,7 +14,8 @@ import { createApp } from 'vue'
 // import App from "./09-具名插槽的使用/App.vue"
 // import App from "./10-作用域插槽的使用/App.vue"
 
-import App from "./11-动态组件的使用/App.vue"
+// import App from "./11-动态组件的使用/App.vue"
+import App from "./12-异步组件的使用/App.vue"
 
 const app = createApp(App)
 app.config.unwrapInjectedRef = true

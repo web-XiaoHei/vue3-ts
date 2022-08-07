@@ -11,6 +11,8 @@
 
     <!-- 2.动态组件 -->
     <keep-alive include="home,about">
+      <!-- <keep-alive :include="/home|about/"> -->
+      <!-- <keep-alive include=["home","about"]> -->
       <component
         :is="currentTab"
         name="coderwhy"
