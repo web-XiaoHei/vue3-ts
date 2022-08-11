@@ -25,10 +25,20 @@ const AsyncCategory = defineAsyncComponent({
   //   errorComponent:
   //   在显示loadingComponent组件之前，等待多长时间
   delay: 2000,
-  //  err:错误信息
+  // err:错误信息
   // retry：函数，调用和retry尝试重新加载
+  // fail:函数，指示加载程序结束退出
   // attempts：记录尝试的次数
-  onError: function (err, retry, attempts) {},
+  onError: function (err, retry, fail, attempts) {
+    if (err.message.match(/fetch/) && attempts <= 3) {
+      // 请求发生错误时重试，最多可尝试3次
+      retry();
+    } else {
+      // 注意：retry/fail 就像promise的resolve/reject一样“
+      //必须调用其中一个才能继续错误处理
+      fail();
+    }
+  },
   suspensible: true,
 });
 
