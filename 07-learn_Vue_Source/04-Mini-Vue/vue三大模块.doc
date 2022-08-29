@@ -1,0 +1,13 @@
+Vue包括三大模块：
+渲染系统模块：runtime：Vnode->真实dom
+可响应式系统模块： reactive（vue2/vue3）
+应用程序入口模块：createApp(rootComponent).mount("#app")
+
+complier 
+.vue文件->@vue/complier-sfc
+
+
+渲染系统，该系统主要包含三个功能：
+功能一：h函数，用于返回一个vnode对象
+功能二：mount函数，用于将vnode挂载到DOM上
+功能三：patch函数，用于对两个vnode进行对比，决定如何处理新的vnode
