@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试</title>
+    <style>
+        .container {
+            width: 2400px;
+        }
+
+        div.a {
+            width: 100%;
+            height: 100px;
+        }
+
+        div.b {
+            width: 800px;
+            height: 50px;
+            position: relative;
+            background: yellow;
+        }
+
+        #btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            height: 50px;
+            border: 1px solid red;
+            display: block;
+        }
+
+        #btn2 {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 80px;
+            height: 50px;
+            border: 1px solid red;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class='a'>
+            <div class='b'></div>
+        </div>
+        <div id="btn">返回顶部</div>
+        <div id="btn2">返回底部</div>
+    </div>
+    <script>
+        window.onload = function () {
+            var btn = document.getElementById('btn');
+            var btn2 = document.getElementById('btn2');
+            document.querySelector('.b').textContent = '开始111111111199999999222222299966666699999222222299966666666669999999999900000000结束'
+            //获取页面可视区高度
+            // var ClientWidth  = document.documentElement.clientWidth;
+            // console.log(ClientWidth, 'ClientWidth' )
+
+            btn.onclick = function () {
+                document.querySelector('.b').scrollIntoView({ behavior: "smooth", block: "start", inline: "start" });
+                btn.style.display = "none";
+                btn2.style.display = "block";
+            }
+            btn2.onclick = function () {
+                document.querySelector('.b').scrollIntoView({ behavior: "smooth", block: "end", inline: "end" });
+                btn.style.display = "block";
+                btn2.style.display = "none";
+            };
+        };
+    </script>
+</body>

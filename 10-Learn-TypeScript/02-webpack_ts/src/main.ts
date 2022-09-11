@@ -1,3 +1,4 @@
 import { sum } from "./math";
 const a: string = "abc";
-sum(10, 20);
+console.log(sum(10, 20));
+console.log(a);
