@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <title>测试</title>
+    <style>
+        div.b{
+            width: 800px;
+            height:50px;
+            position:relative;
+            background:yellow;
+            display: flex;
+        }
+        #btn{
+            position: fixed;
+            top:0px;
+            right:0px;
+            width:20px;
+            background-color: #fff;
+            display: block;
+            margin-right: 3px;
+        }
+        #btn2{
+            position: fixed;
+            top:0px;
+            left:0px;
+            width:20px;
+            background-color: #fff;
+            display: block;
+        }
+        .e{
+            display: inline-block;
+            width: 60px;
+            height: 40px;
+            border: 1px solid black;
+            text-align: center;
+        }
+        .disBlack{
+            background-color: #fff;
+            /* pointer-events: none; */
+        }
+        .disNone{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class='b'>
+   <span>开始</span>
+   <span class='disBlack e' title="测试开始tips">开始</span>
+   <span class='disNone e' title="暂停tips">暂停</span>
+   <span class="disStop e" title="测试停止tips">停止</span>
+   <span class="disReset e" title="重置tips">重置</span>
+   <span>第5个</span>
+   <span>第5个</span>
+   <span>第5个</span>
+   <span>第一个</span>
+   <span>第9个</span>
+   <span>第一个</span>
+   <span>第一个</span>
+   <span>第一个</span>
+   <span>第四个</span>
+   <span>结束</span>
+</div>
+<div id="btn">回顶部</div>
+<div id="btn2">回底部</div>
+<script>
+    window.onload = function(){
+        // 以下是执行显示区域
+        const btn = document.getElementById('btn');
+        const btn2 = document.getElementById('btn2');
+        const dBox = document.querySelector('.b')
+        // console.log(dBox,'dBox');
+        btn.style.display = 'none';
+        btn2.style.display = 'none';
+        // dBox.textContent ='开始11开始11开始11开始11开始11开始11开始11开始1开始11开始开始11开始开始00结束0结束00结束100结束'
+		const bWidth = dBox.offsetWidth
+        //获取页面可视区高度
+        const ClientWidth  = document.documentElement.clientWidth;
+        if (window.innerWidth < 800 && document.body.scrollTop == 0){
+            // console.log('top !0 且小于八百 --- 刚进入页面');
+            btn2.style.display = 'block';
+            dBox.style.paddingLeft = '20px';
+            btn.style.display = 'none';
+        }
+        const getWindowInfo = () => {
+            if (window.innerWidth > bWidth) {
+                console.log('大于800');
+                btn2.style.display = 'none';
+                btn.style.display = 'none';
+                dBox.style.padding = '0px';
+
+            } else if (window.innerWidth < bWidth && document.body.scrollTop !== 0){
+                console.log('top !0 且小于八百');
+                btn2.style.display = 'block';
+                dBox.style.paddingLeft = '20px';
+                console.log('dBox');
+                btn.style.display = 'none';
+            } else if(document.body.scrollTop == 0  && window.innerWidth < bWidth){
+                console.log('top0 且小于八百');
+                btn.style.display = 'none';
+                btn2.style.display = 'block';
+                dBox.style.paddingLeft = '20px'
+            }else if(document.body.scrollTop == 0  && window.innerWidth > bWidth) {
+                // console.log('top0 且大于八百');
+                btn.style.display = 'none';
+                btn2.style.display = 'none';
+                dBox.style.padding = '0px';
+
+            }
+        };
+        const getClickBtn = function() {
+            dBox.scrollIntoView({behavior: "smooth",block: "start", inline: "start"});
+            console.log('getClickBtn');
+            btn.style.display = 'none';
+            btn2.style.display = 'block';
+            dBox.style.paddingRight = '0px'
+            dBox.style.paddingLeft = '20px'
+        }
+        const getClickBtn2 = function() {
+            dBox.scrollIntoView({behavior: "smooth",block: "end", inline: "end"});
+            btn2.style.display = 'none';
+            btn.style.display = 'block';
+            dBox.style.paddingRight = '40px'
+            dBox.style.paddingLeft = '0px'
+            console.log(dBox,'getClickBtn2');
+        }
+        window.addEventListener('resize', getWindowInfo);
+        btn.addEventListener('click', getClickBtn);
+        btn2.addEventListener('click', getClickBtn2);
+        // 以下执行显示隐藏
+        const disBlackBox = document.querySelector('.disBlack')
+        const disNoneBox = document.querySelector('.disNone')
+        const disStopBox = document.querySelector('.disStop')
+        const disResetBox = document.querySelector('.disReset')
+        disStopBox.style.opacity = '0.5'
+        disResetBox.style.opacity = '0.5'
+        disNoneBox.style.display = 'none'
+        disBlackBox.style.cursor='pointer'
+        const getClickdisBlack = function() {
+            console.log("disBlack");
+            disNoneBox.style.display = 'block'
+            disBlackBox.style.display = 'none'
+            disNoneBox.addEventListener('click', getClickdisNone);
+            disStopBox.addEventListener('click', getClickdisStop);
+            disResetBox.addEventListener('click', getClickdisReset);
+            disStopBox.style.opacity = '1'
+            disNoneBox.style.opacity = '1'
+            disResetBox.style.opacity = '1'
+            disNoneBox.style.cursor='pointer'
+            disStopBox.style.cursor='pointer'
+            disResetBox.style.cursor='pointer'
+            console.log('点击开始');
+            // disStopBox.removeEventListener('click',getClickdisStop,false)
+        }
+        const getClickdisNone = function() {
+            console.log("disNone");
+            disNoneBox.style.display = 'none'
+            disBlackBox.style.display = 'block'
+            disStopBox.style.opacity = '1'
+            disResetBox.style.opacity = '1'
+            console.log('点击暂停');
+        }
+        const getClickdisStop = function() {
+            console.log("disStop");
+            disNoneBox.removeEventListener('click',getClickdisNone,false)
+            disStopBox.removeEventListener('click',getClickdisStop,false)
+            disNoneBox.style.opacity = '0.5'
+            disBlackBox.style.opacity = '0.5'
+            disStopBox.style.opacity = '0.5'
+            disNoneBox.style.cursor='default'
+            disStopBox.style.cursor='default'
+            disBlackBox.style.cursor = 'default'
+            console.log('点击停止',disStopBox);
+        }
+        const getClickdisReset = function() {
+            console.log("disReset");
+            disBlackBox.addEventListener('click', getClickdisBlack);
+            disStopBox.removeEventListener('click',getClickdisStop,false)
+            disResetBox.removeEventListener('click',getClickdisReset,false)
+            disStopBox.style.opacity = '0.5'
+            disResetBox.style.opacity = '0.5'
+            disBlackBox.style.opacity = '1'
+            disNoneBox.style.display = 'none'
+            disBlackBox.style.display = 'block'
+            disResetBox.style.cursor='default'
+            disStopBox.style.cursor='default'
+            disBlackBox.style.cursor='pointer'
+            console.log('点击重置');
+        }
+        disBlackBox.addEventListener('click', getClickdisBlack);
+        console.log(disBlackBox,disNoneBox,disStopBox,disResetBox);
+    };
+</script>
+</body>
