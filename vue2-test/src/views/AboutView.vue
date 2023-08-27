@@ -4,11 +4,9 @@
     <div v-for="(property, propertyIndex) in properties" :key="propertyIndex">
       <p>{{ property.name }}</p>
       <div class="sku-box-area">
-        <template
-          v-for="(attribute, attributeIndex) in property.attributes"
-          :key="attributeIndex"
-        >
+        <template v-for="(attribute, attributeIndex) in property.attributes">
           <div
+            :key="attributeIndex"
             :class="[
               'sku-box',
               'sku-text',
@@ -110,17 +108,31 @@ export default {
     // 构造初始空邻接矩阵存储无向图
     initEmptyAdjMatrix() {
       this.properties.forEach((prop) => {
+        //   {
+        //   id: "1",
+        //   name: "容量",
+        //   attributes: [
+        //     { value: "1L", isActive: false, isDisabled: false },
+        //     { value: "4L", isActive: false, isDisabled: false },
+        //   ],
+        // },
         prop.attributes.forEach((attr) => {
+          // { value: "1L", isActive: false, isDisabled: false }
           this.vertexList.push(attr.value);
+          // ["1L","4L","红色","黑色"]
         });
       });
       for (let i = 0; i < this.vertexList.length; i++) {
         this.matrix[i] = new Array(this.vertexList.length).fill(0);
       }
+      console.log(this.matrix, "this.matrix");
     },
 
     // 根据 skuList 和 properties 设置邻接矩阵的值
     setAdjMatrixValue() {
+      // { id: "10", attributes: ["1L", "红色"] },
+      // { id: "20", attributes: ["1L", "黑色"] },
+      // { id: "30", attributes: ["4L", "红色"] },
       this.skuList.forEach((sku) => {
         this.associateAttributes(sku.attributes);
       });

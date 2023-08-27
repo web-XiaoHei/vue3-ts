@@ -6,6 +6,7 @@ enum Direction {
   TOP,
   BOTTOM,
 }
+console.log(Direction[3]);
 
 function turnDirection(direction: Direction) {
   switch (direction) {

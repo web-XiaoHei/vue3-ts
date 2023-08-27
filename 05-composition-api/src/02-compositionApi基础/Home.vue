@@ -1,12 +1,13 @@
 <template>
   <div>
     <button @click="updateState">修改状态</button>
-    <h2>{{ info.counter }}</h2>
+    <!-- <h2>{{ info.counter }}</h2> -->
+    <h2>{{ infoReactive }}</h2>
   </div>
 </template>
 
 <script>
-import { readonly, reactive, ref } from "vue";
+import { readonly, reactive, ref, onMounted } from "vue";
 
 export default {
   setup() {
@@ -28,14 +29,34 @@ export default {
     const readonlyInfo3 = readonly(info3);
 
     const updateState = () => {
-      readonlyInfo3.value = "coderwhy";
-      console.log(readonlyInfo3.value, "readonlyInfo3");
-      info3.value = "coderwhy";
-      console.log(info3.value, "info3");
+      // readonlyInfo3.value = "coderwhy";
+      // console.log(readonlyInfo3.value, "readonlyInfo3");
+      // info3.value = "coderwhy";
+      // console.log(info3.value, "info3");
+      const object = {
+        name: "1",
+        age: "2",
+        address: "3",
+      };
+
+      infoReactive = object;
+      console.log(infoReactive, "infoReactive");
+      console.log(info2);
     };
+
+    let infoReactive = reactive({
+      name: "",
+      age: "",
+      address: "",
+    });
+
+    onMounted(() => {
+      updateState();
+    });
 
     return {
       updateState,
+      readonlyInfo,
     };
   },
 };

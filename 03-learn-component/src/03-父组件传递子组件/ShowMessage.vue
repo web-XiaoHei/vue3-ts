@@ -9,7 +9,6 @@
 <script>
 export default {
   //   props: ["title", "content"],
-  inheritAttrs: false,
   props: {
     // 多个可能的类型
     title: [String, Number],
